@@ -6,6 +6,6 @@ class Main
 {
     function run()
     {
-        
+        return json_encode(["key"=>"this"]);
     }
 }
