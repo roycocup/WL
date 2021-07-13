@@ -6,14 +6,14 @@ use Experiment\Main;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers Experiment\Main
+ * @covers Main
  */
 class MainTest extends TestCase
 {
     
-    function testThisWorks()
+    function testInstantiates()
     {
         $sut = new Main();
-        self::assertNotEmpty($sut);
+        self::assertInstanceOf(Main::class, $sut);
     }
 }
