@@ -49,6 +49,7 @@ class MainTest extends TestCase
         $this->mockCaller->method('call');
         $result = $this->sut->run($this->mockCaller, $this->mockScraper, true);
 
+
         self::assertNotEmpty($result);
         self::isJson($result);
     }
