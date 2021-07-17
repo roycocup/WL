@@ -4,7 +4,14 @@ namespace Experiment;
 
 class Main 
 {
-    function run()
+    protected $url;
+    public function __construct(string $url = null)
+    {
+        if (!$url) $url = "https://videx.comesconnected.com/";
+        $this->url = $url;
+    }
+
+    function run(Caller $caller)
     {
         $output = [
             'title',

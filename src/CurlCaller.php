@@ -3,7 +3,7 @@
 namespace Experiment;
 use \Symfony\Component\HttpFoundation\Response;
 
-class CurlRequester implements Requester
+class CurlCaller implements Caller
 {
     public function call(string $url): Response
     {

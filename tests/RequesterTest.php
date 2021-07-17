@@ -2,20 +2,20 @@
 
 namespace Tests;
 
-use Experiment\CurlRequester;
-use Experiment\Requester;
+use Experiment\CurlCaller;
+use Experiment\Caller;
 use PHPUnit\Framework\TestCase;
 
 
 /**
- * @covers CurlRequester
+ * @covers CurlCaller
  */
 class RequesterTest extends TestCase
 {
     function testCanInstantiate()
     {
-        $sut = new CurlRequester();
-        self::assertInstanceOf(Requester::class, $sut);
+        $sut = new CurlCaller();
+        self::assertInstanceOf(Caller::class, $sut);
     }
 
     /**
@@ -23,7 +23,7 @@ class RequesterTest extends TestCase
      */
     function testCanGetResponseFromPage()
     {
-        $sut = new CurlRequester();
+        $sut = new CurlCaller();
         $response = $sut->call('www.google.com');
         self::assertNotEmpty($response); 
     }
@@ -31,7 +31,7 @@ class RequesterTest extends TestCase
 
     function testCanGetResponseHasProperties()
     {
-        $sut = new CurlRequester();
+        $sut = new CurlCaller();
         $response = $sut->call('www.google.com');
         self::assertEquals(200, $response->getStatusCode());
         self::assertNotEmpty($response->getContent());
