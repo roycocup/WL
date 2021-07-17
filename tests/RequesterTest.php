@@ -33,6 +33,7 @@ class RequesterTest extends TestCase
     {
         $sut = new CurlRequester();
         $response = $sut->call('www.google.com');
-        self::assertEquals(200, $response->statusCode());
+        self::assertEquals(200, $response->getStatusCode());
+        self::assertNotEmpty($response->getContent());
     }
 }

@@ -4,7 +4,7 @@ namespace Tests;
 
 use Experiment\CurlRequester;
 use Experiment\Requester;
-use Experiment\Response;
+use Symfony\Component\HttpFoundation\Response;
 use PHPUnit\Framework\TestCase;
 
 
@@ -13,19 +13,14 @@ use PHPUnit\Framework\TestCase;
  */
 class ResponseTest extends TestCase
 {
-    function testCanInstantiate()
-    {
-        $sut = new Response();
-        self::assertInstanceOf(Response::class, $sut);
-    }
-
     function testHasProperties()
     {
+
         $sut = new Response();
         $sut->setStatusCode(200);
-        $sut->setBody("sdfsdf");
+        $sut->setContent("sdfsdf");
 
-        self::assertEquals($sut->statusCode(), 200);
-        self::assertEquals($sut->body(), "sdfsdf");
+        self::assertEquals($sut->getStatusCode(), 200);
+        self::assertEquals($sut->getContent(), "sdfsdf");
     }
 }
