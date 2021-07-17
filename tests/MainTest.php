@@ -49,10 +49,11 @@ class MainTest extends TestCase
     {
         $result = $this->sut->run($this->mockCaller, $this->mockScraper);
 
-        $expected = [ 'title', 'description', 'price', 'discount' ];
-        $actual = json_decode($result);
-
-        self::assertEquals($expected, $actual);
+        $result = (array) json_decode($result);
+        self::assertArrayHasKey('title', $result);
+        self::assertArrayHasKey('description', $result);
+        self::assertArrayHasKey('price', $result);
+        self::assertArrayHasKey('discount', $result);
     }
 
     /**

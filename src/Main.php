@@ -17,13 +17,13 @@ class Main
         $response = $caller->call($this->url);
         $scrapped = $scraper->scrape($response);
 
-//        $output = [
-//            'title'=>$scrapped->getTitle(),
-//            'description'=>$scrapped->getDescription(),
-//            'price'=>$scrapped->getPrice(),
-//            'discount'=>$scrapped->getDiscount()
-//        ];
-        $output = ['title', 'description', 'price', 'discount'];
+        $output = [
+            'title'=>$scrapped->getTitle(),
+            'description'=>$scrapped->getDescription(),
+            'price'=>$scrapped->getPrice(),
+            'discount'=>$scrapped->getDiscount()
+        ];
+
         return json_encode($output);
     }
 }
