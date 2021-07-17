@@ -29,4 +29,15 @@ class MainTest extends TestCase
         self::assertNotEmpty($result);
         self::isJson($result);
     }
+
+    function testResponseContainsProperties()
+    {
+        $sut = new Main();
+        $result = $sut->run();
+
+        $expected = [ 'title', 'description', 'price', 'discount' ];
+        $actual = json_decode($result);
+
+        self::assertEquals($expected, $actual);
+    }
 }

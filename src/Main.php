@@ -6,6 +6,12 @@ class Main
 {
     function run()
     {
-        return json_encode(["key"=>"this"]);
+        $output = [
+            'title',
+            'description',
+            'price',
+            'discount'
+        ];
+        return json_encode($output);
     }
 }
