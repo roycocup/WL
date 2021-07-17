@@ -11,14 +11,19 @@ class Main
         $this->url = $url;
     }
 
-    function run(Caller $caller, Scraper $scraper)
+    function run(CallerInterface $caller, ScraperInterface $scraper)
     {
-        $output = [
-            'title',
-            'description',
-            'price',
-            'discount'
-        ];
+        /** @var \Symfony\Component\HttpFoundation\Response $response */
+        $response = $caller->call($this->url);
+        $scrapped = $scraper->scrape($response);
+
+//        $output = [
+//            'title'=>$scrapped->getTitle(),
+//            'description'=>$scrapped->getDescription(),
+//            'price'=>$scrapped->getPrice(),
+//            'discount'=>$scrapped->getDiscount()
+//        ];
+        $output = ['title', 'description', 'price', 'discount'];
         return json_encode($output);
     }
 }

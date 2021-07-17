@@ -3,20 +3,20 @@
 
 namespace Tests;
 
-use Experiment\Scraper;
-use Experiment\VidexScraper;
+use Experiment\ScraperInterface;
+use Experiment\VidexScraperInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers Scraper
+ * @covers ScraperInterface
  */
 class ScraperTest extends TestCase
 {
 
-    public function testItInstantiates()
+    function testItInstantiates()
     {
-        $sut = new VidexScraper();
-        self::assertInstanceOf(Scraper::class, $sut);
+        $sut = new VidexScraperInterface();
+        self::assertInstanceOf(ScraperInterface::class, $sut);
     }
 
 }
