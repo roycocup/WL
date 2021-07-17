@@ -36,7 +36,7 @@ class MainTest extends TestCase
      */
     function testCanGetJsonString()
     {
-        $result = $this->sut->run($this->mockCaller);
+        $result = $this->sut->run($this->mockCaller, $this->mockScraper);
 
         self::assertNotEmpty($result);
         self::isJson($result);
@@ -44,7 +44,7 @@ class MainTest extends TestCase
 
     function testResponseContainsProperties()
     {
-        $result = $this->sut->run($this->mockCaller);
+        $result = $this->sut->run($this->mockCaller, $this->mockScraper);
 
         $expected = [ 'title', 'description', 'price', 'discount' ];
         $actual = json_decode($result);

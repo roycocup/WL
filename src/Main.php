@@ -11,7 +11,7 @@ class Main
         $this->url = $url;
     }
 
-    function run(Caller $caller)
+    function run(Caller $caller, Scraper $scraper)
     {
         $output = [
             'title',
