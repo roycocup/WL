@@ -10,7 +10,7 @@ class Main
         if (!$url) $url = "https://videx.comesconnected.com/";
         $this->url = $url;
     }
-    
+
     function run(CallerInterface $caller, ScraperInterface $scraper, $returnJson = false)
     {
         /** @var \Symfony\Component\HttpFoundation\Response $response */
