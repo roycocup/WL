@@ -4,7 +4,7 @@ namespace Experiment;
 
 use \Symfony\Component\HttpFoundation\Response;
 
-interface Caller
+interface CallerInterface
 {
     public function call(string $url): Response;
 }

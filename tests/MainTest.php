@@ -3,8 +3,10 @@
 namespace Tests;
 
 use Experiment\Caller;
+use Experiment\CallerInterface;
 use Experiment\Main;
-use Experiment\Scraper;
+use Experiment\Response;
+use Experiment\ScraperInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,8 +22,8 @@ class MainTest extends TestCase
 
     public function setUp(): void
     {
-        $this->mockCaller = self::createMock(Caller::class);
-        $this->mockScraper = self::createMock(Scraper::class);
+        $this->mockCaller = self::createMock(CallerInterface::class);
+        $this->mockScraper = self::createMock(ScraperInterface::class);
         $this->sut = new Main();
     }
 
@@ -36,6 +38,7 @@ class MainTest extends TestCase
      */
     function testCanGetJsonString()
     {
+        $this->mockCaller->method('call');
         $result = $this->sut->run($this->mockCaller, $this->mockScraper);
 
         self::assertNotEmpty($result);

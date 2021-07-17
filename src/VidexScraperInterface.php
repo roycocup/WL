@@ -4,7 +4,7 @@
 namespace Experiment;
 
 
-class VidexScraper implements Scraper
+class VidexScraperInterface implements ScraperInterface
 {
 
     function scrape()

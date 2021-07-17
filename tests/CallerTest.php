@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Experiment\CallerInterface;
 use Experiment\CurlCaller;
 use Experiment\Caller;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +16,7 @@ class CallerTest extends TestCase
     function testCanInstantiate()
     {
         $sut = new CurlCaller();
-        self::assertInstanceOf(Caller::class, $sut);
+        self::assertInstanceOf(CallerInterface::class, $sut);
     }
 
     /**

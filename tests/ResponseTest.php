@@ -1,24 +1,29 @@
 <?php
 
+
 namespace Tests;
 
-use Symfony\Component\HttpFoundation\Response;
+
+use Experiment\Response;
 use PHPUnit\Framework\TestCase;
 
-
 /**
- * @covers \Symfony\Component\HttpFoundation\Response
+ * @covers \Experiment\Response
  */
 class ResponseTest extends TestCase
 {
-    function testHasProperties()
+
+    function testCanGetProperties()
     {
-
         $sut = new Response();
-        $sut->setStatusCode(200);
-        $sut->setContent("sdfsdf");
+        $sut->setTitle('title');
+        $sut->setDescription('this is a description');
+        $sut->setPrice(100);
+        $sut->setDiscount(10);
 
-        self::assertEquals($sut->getStatusCode(), 200);
-        self::assertEquals($sut->getContent(), "sdfsdf");
+        self::assertEquals('title', $sut->getTitle());
+        self::assertEquals('this is a description', $sut->getDescription());
+        self::assertEquals(100, $sut->getPrice());
+        self::assertEquals(10, $sut->getDiscount());
     }
 }

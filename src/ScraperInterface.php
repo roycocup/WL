@@ -4,7 +4,7 @@
 namespace Experiment;
 
 
-interface Scraper
+interface ScraperInterface
 {
     function scrape();
 }
