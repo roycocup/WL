@@ -6,7 +6,10 @@
         }
     ],
     "require": {
-        "lib-curl": "^7.64"
+        "php": ">=7.3",
+        "lib-curl": "^7.64",
+        "ext-curl": "*",
+        "symfony/http-foundation": "^5.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
