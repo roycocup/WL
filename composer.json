@@ -9,7 +9,9 @@
         "php": ">=7.3",
         "lib-curl": "^7.64",
         "ext-curl": "*",
-        "symfony/http-foundation": "^5.3"
+        "symfony/http-foundation": "^5.3",
+        "symfony/dom-crawler": "^5.3",
+        "symfony/css-selector": "^5.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"

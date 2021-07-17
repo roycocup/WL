@@ -6,5 +6,5 @@ use \Symfony\Component\HttpFoundation\Response;
 
 interface ScraperInterface
 {
-    function scrape(Response $response): \Experiment\Response;
+    function scrape(Response $httpResponse): array;
 }

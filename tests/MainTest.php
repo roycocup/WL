@@ -62,7 +62,6 @@ class MainTest extends TestCase
         $result = $this->sut->run($this->mockCaller, $mockScraper);
 
         $singleSet = $result[0];
-
         self::assertEquals('title', $singleSet['title']);
         self::assertEquals('description', $singleSet['description']);
         self::assertEquals(156, $singleSet['price']);
