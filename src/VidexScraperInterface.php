@@ -16,10 +16,19 @@ class VidexScraperInterface implements ScraperInterface
         $crawler = new Crawler($html);
 
         $rows = $crawler->filter('.row-subscriptions');
-        $titles = $rows->filter('.col-cs-4');
+        $monthly = $rows->first();
+        $annually = $rows->last();
 
+        $monthlyDeals = $this->extract($monthly);
+        $annuallyDeals = $this->extract($annually);
+        return array_merge($monthlyDeals, $annuallyDeals);
+    }
+
+    private function extract($row): array
+    {
+        $titles = $row->filter('.col-cs-4');
         $result = [];
-        for ($i=0; $i<=$titles->count()-1; $i++){
+        for ($i = 0; $i <= $titles->count() - 1; $i++) {
             $option = $titles->eq($i);
             $title = $option->filter('.header');
             $description = $option->filter('.package-name');
@@ -34,12 +43,16 @@ class VidexScraperInterface implements ScraperInterface
             preg_match('/[\d]+/', $price->text(), $match);
             $response->setPrice((int)$match[0]);
 
-            if(empty($discount->text())) continue;
-            preg_match('/[\d]+/', $discount->text(), $match);
-            $response->setDiscount((int)$match[0]);
+            try{
+                preg_match('/[\d]+/', $discount->text(), $match);
+                $response->setDiscount((int)$match[0]);
+            } catch (\Exception $e) {
+                continue;
+            }
+
 
             $result[] = $response;
         }
-        return $result;
+        return array($result, $match);
     }
 }
