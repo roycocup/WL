@@ -11,7 +11,7 @@ class Main
         $this->url = $url;
     }
 
-    function run(CallerInterface $caller, ScraperInterface $scraper)
+    function run(CallerInterface $caller, ScraperInterface $scraper, $returnJson = false)
     {
         /** @var \Symfony\Component\HttpFoundation\Response $response */
         $response = $caller->call($this->url);
@@ -25,6 +25,9 @@ class Main
             'discount'=>$scrapped->getDiscount(),
         ];
 
-        return json_encode($result);
+        if ($returnJson)
+            return json_encode($result);
+
+        return $result;
     }
 }
