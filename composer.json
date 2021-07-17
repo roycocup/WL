@@ -6,7 +6,9 @@
         }
     ],
     "require": {
-        "lib-curl": "^7.64"
+        "php": ">=7.3",
+        "lib-curl": "^7.64",
+        "ext-curl": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
