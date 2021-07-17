@@ -2,14 +2,12 @@
 
 namespace Tests;
 
-use Experiment\CurlCaller;
-use Experiment\Caller;
 use Symfony\Component\HttpFoundation\Response;
 use PHPUnit\Framework\TestCase;
 
 
 /**
- * @covers CurlCaller
+ * @covers \Symfony\Component\HttpFoundation\Response
  */
 class ResponseTest extends TestCase
 {

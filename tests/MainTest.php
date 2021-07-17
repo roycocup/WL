@@ -4,6 +4,7 @@ namespace Tests;
 
 use Experiment\Caller;
 use Experiment\Main;
+use Experiment\Scraper;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,12 +14,14 @@ class MainTest extends TestCase
 {
 
 
-    private $mockCaller;
     private $sut;
+    private $mockCaller;
+    private $mockScraper;
 
     public function setUp(): void
     {
         $this->mockCaller = self::createMock(Caller::class);
+        $this->mockScraper = self::createMock(Scraper::class);
         $this->sut = new Main();
     }
 
@@ -55,9 +58,14 @@ class MainTest extends TestCase
      */
     function testCanGetFromRealWebsite()
     {
-        $result = $this->sut->run($this->mockCaller);
+        $result = $this->sut->run($this->mockCaller, $this->mockScraper);
 
         self::assertNotEmpty($result);
-        self::isJson($result);
+        self::assertNotEmpty($result->getResults());
+        $results = $result->getResults();
+        self::assertNotEmpty($results->getTitle());
+        self::assertNotEmpty($results->getDescription());
+        self::assertNotEmpty($results->getPrice());
+        self::assertNotEmpty($results->getDiscount());
     }
 }

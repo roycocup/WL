@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers CurlCaller
  */
-class RequesterTest extends TestCase
+class CallerTest extends TestCase
 {
     function testCanInstantiate()
     {
