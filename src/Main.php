@@ -15,15 +15,16 @@ class Main
     {
         /** @var \Symfony\Component\HttpFoundation\Response $response */
         $response = $caller->call($this->url);
+        /** @var Response $scrapped */
         $scrapped = $scraper->scrape($response);
 
-        $output = [
+        $result[] = [
             'title'=>$scrapped->getTitle(),
             'description'=>$scrapped->getDescription(),
             'price'=>$scrapped->getPrice(),
-            'discount'=>$scrapped->getDiscount()
+            'discount'=>$scrapped->getDiscount(),
         ];
 
-        return json_encode($output);
+        return json_encode($result);
     }
 }

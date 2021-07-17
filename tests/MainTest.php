@@ -47,13 +47,27 @@ class MainTest extends TestCase
 
     function testResponseContainsProperties()
     {
-        $result = $this->sut->run($this->mockCaller, $this->mockScraper);
+        $mockResponse = self::getMockBuilder(Response::class)->getMock();
+        $mockResponse->method('getTitle')->willReturn('title');
+        $mockResponse->method('getDescription')->willReturn('description');
+        $mockResponse->method('getPrice')->willReturn(156);
+        $mockResponse->method('getDiscount')->willReturn(9);
+
+        $mockScraper = self::getMockBuilder(ScraperInterface::class)->getMock();
+        $mockScraper->method('scrape')->willReturn($mockResponse);
+
+        $result = $this->sut->run($this->mockCaller, $mockScraper);
 
         $result = (array) json_decode($result);
-        self::assertArrayHasKey('title', $result);
-        self::assertArrayHasKey('description', $result);
-        self::assertArrayHasKey('price', $result);
-        self::assertArrayHasKey('discount', $result);
+
+        $singleSet = (array)$result[0];
+
+        self::assertEquals('title', $singleSet['title']);
+        self::assertEquals('description', $singleSet['description']);
+        self::assertEquals(156, $singleSet['price']);
+        self::assertEquals(9, $singleSet['discount']);
+
+
     }
 
     /**
