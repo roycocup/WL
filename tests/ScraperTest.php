@@ -44,7 +44,19 @@ class ScraperTest extends TestCase
         );
         self::assertEquals(16, $responses[0]->getPrice());
         self::assertNull($responses[0]->getDiscount());
+    }
 
+    /**
+     * @group integration
+     * @group slow
+     */
+    function testNumberOfResponsesMatchesHtml()
+    {
+        $httpResponse = new Response();
+        $httpResponse->setContent(file_get_contents(__DIR__.'/fixtures/videx.html'));
+        $responses = $this->sut->scrape($httpResponse);
+        
+        self::assertEquals(6, count($responses));
     }
 
 }
