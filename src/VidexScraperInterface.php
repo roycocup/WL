@@ -20,8 +20,8 @@ class VidexScraperInterface implements ScraperInterface
         $annually = $rows->last();
 
         $monthlyDeals = $this->extract($monthly);
-        $annuallyDeals = $this->extract($annually);
-        return array_merge($monthlyDeals, $annuallyDeals);
+        $annualDeals = $this->extract($annually);
+        return array_merge($monthlyDeals, $annualDeals);
     }
 
     private function extract($row): array
@@ -40,19 +40,18 @@ class VidexScraperInterface implements ScraperInterface
             $response->setTitle($title->text());
             $response->setDescription($description->text());
 
-            preg_match('/[\d]+/', $price->text(), $match);
-            $response->setPrice((int)$match[0]);
+            preg_match('/[\d]+/', $price->text(), $m1);
+            $response->setPrice((int)$m1[0]);
 
             try{
-                preg_match('/[\d]+/', $discount->text(), $match);
-                $response->setDiscount((int)$match[0]);
+                preg_match('/[\d]+/', $discount->text(), $m2);
+                $response->setDiscount((int)$m2[0]);
             } catch (\Exception $e) {
-                continue;
+                // no need to set anything then
             }
-
 
             $result[] = $response;
         }
-        return array($result, $match);
+        return $result;
     }
 }

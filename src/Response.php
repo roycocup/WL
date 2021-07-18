@@ -47,7 +47,7 @@ class Response implements ResponseInterface
         return $this->price;
     }
 
-    public function getDiscount(): int
+    public function getDiscount(): ?int
     {
         return $this->discount;
     }

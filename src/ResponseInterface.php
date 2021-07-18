@@ -17,5 +17,5 @@ interface ResponseInterface
 
     public function getPrice(): int;
 
-    public function getDiscount(): int;
+    public function getDiscount(): ?int;
 }

@@ -34,7 +34,7 @@ class ScraperTest extends TestCase
     function testItCanGetProperties()
     {
         $httpResponse = new Response();
-        $httpResponse->setContent(file_get_contents('./tests/fixtures/videx.html'));
+        $httpResponse->setContent(file_get_contents(__DIR__.'/fixtures/videx.html'));
         $responses = $this->sut->scrape($httpResponse);
 
         self::assertEquals("Option 300 Mins", $responses[0]->getTitle());
@@ -43,7 +43,8 @@ class ScraperTest extends TestCase
             $responses[0]->getDescription()
         );
         self::assertEquals(16, $responses[0]->getPrice());
-        self::assertEquals("10", $responses[0]->getDiscount());
+        self::assertNull($responses[0]->getDiscount());
+
     }
 
 }
